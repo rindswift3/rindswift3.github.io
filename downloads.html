@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sears4All</title>
+    <link rel="icon" href="images/logo.png" type="image/x-icon">
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body background="images/bg.gif">
+    <!-- made by biggerminion ;) -->
+    <audio loop id="hoa-audio" src="music/sonicdreamscollection.mp3" autoplaystyle="display:none"></audio>
+
+    <script>
+            (function () {
+                const hoaAudio = document.getElementById('hoa-audio');
+    
+                function catchHandler() {
+                    // Audio playback was blocked.
+                    // We will register input listeners to wait until the user has interacted with the page before playing again.
+            
+                    let inputListener;
+                    inputListener = function () {
+                        hoaAudio.play();
+                        document.removeEventListener('mousedown', inputListener);
+                        document.removeEventListener('keydown', inputListener);
+                    };
+    
+                    document.addEventListener('mousedown', inputListener);
+                    document.addEventListener('keydown', inputListener);
+                }
+    
+                if (hoaAudio.readyState > 1) {
+                    // The audio is ready to be played.
+                    hoaAudio.play().catch(catchHandler);
+                } else {
+                    // The audio cannot be played yet, wait until it is loaded.
+                    hoaAudio.addEventListener('canplay', function () {
+                        hoaAudio.play().catch(catchHandler);
+                    });
+                }
+            })();
+        </script>
+    <p><img src="images/logo.png" height="300" alt="Logo"></p>
+    <p><strong style="font-family: Arial; color: #000000; font-size: 32px;">Free Sears. Forever.</strong></p>
+    <a href="index.html">Home</a>
+    <p><strong style="font-family: Arial; color: #000000; font-size: 64px;">Glock Auto Sear</strong></p>
+    <a href="freesear/EZ_Glock_Auto_Sear.7z" download>
+        <img src="images/dl.png" height="100">
+</body>
+</html>
